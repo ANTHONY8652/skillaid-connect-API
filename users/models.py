@@ -31,10 +31,26 @@ class User(AbstractBaseUser, PermissionsMixin):
         ('Student', 'Student')
     ]
     email = models.EmailField(unique=True)
-    username = models.CharField(max_length=150, blank=True, required=False)
+    username = models.CharField(max_length=150, blank=True)
     role = models.CharField(max_length=14, choices=ROLE_CHOICES, default='Student')
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+
+    groups = models.ManyToManyField(
+        'auth.Group',
+        related_name = 'custom_user_groups',
+        blank = True,
+        help_text = 'The groups this user belongs to.',
+        verbose_name = 'groups'
+    )
+
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        related_name = 'custom_user_permissions',
+        blank = True,
+        help_text = 'Specific permissions for this user.',
+        verbose_name = 'user permissions',
+    )
 
     objects = UserManager()
 

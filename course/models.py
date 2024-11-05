@@ -26,6 +26,7 @@ class Course(models.Model):
     difficulty_level = models.CharField(max_length=20, choices=DIFFICULTY_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    slug = models.SlugField(unique=True)
 
 
     def __str__(self):

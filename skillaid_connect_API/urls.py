@@ -27,11 +27,18 @@ schema_view = get_schema_view(
         description = 'The skillaid connect api allows users to learn from a variety of courses including tech, programming, graphic design just to list a few and one can select the amount of difficulty one is able to handle from the api',
         terms_of_service = 'https://google.com/policies/terms',
         contact = openapi.Contact(email='githinjianthony720@gmail.com'),
-        license = openapi.license(name='MIT License'),
-    )
+        license = openapi.License(name='MIT License'),
+    ), 
+    public = True,
+    permission_classes = [permissions.AllowAny],
 
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-with-ui'),
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc-with-ui'),
+    path('api/course/', include('course.urls'), name='courses'),
+    path('api/lessons/', include('lesson.urls'), name='lessons'),
+    path('api/users/', include('users.urls'), name='users'),
 ]
