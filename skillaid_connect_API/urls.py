@@ -15,7 +15,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+from rest_framework import permissions
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title = 'Movie Review API',
+        default_version = 'v1.0.0',
+        description = 'The skillaid connect api allows users to learn from a variety of courses including tech, programming, graphic design just to list a few and one can select the amount of difficulty one is able to handle from the api',
+        terms_of_service = 'https://google.com/policies/terms',
+        contact = openapi.Contact(email='githinjianthony720@gmail.com'),
+        license = openapi.license(name='MIT License'),
+    )
+
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
