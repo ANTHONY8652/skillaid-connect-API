@@ -18,6 +18,8 @@ class IsStaffOrAdmin(permissions.BasePermission):
 
 class CourseListCreateView(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, DjangoModelPermissions]
+    serializer_class = CourseSerializer
+    queryset = Course.objects.all()
 
     def get(self, request):
         if not request.user.has_perm('users.can_view_courses'):

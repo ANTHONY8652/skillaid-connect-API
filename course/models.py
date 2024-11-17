@@ -11,6 +11,7 @@ class Course(models.Model):
         ('Design', 'Design'),
         ('Music', 'Music'),
         ('Electrical', 'Electrical'),
+        ('Physical', 'Physical'),
     ]
 
     DIFFICULTY_CHOICES = [
@@ -22,7 +23,7 @@ class Course(models.Model):
     title = models.CharField(max_length=155)
     description = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+    category = models.CharField(max_length=30, choices=CATEGORY_CHOICES)
     difficulty_level = models.CharField(max_length=20, choices=DIFFICULTY_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
