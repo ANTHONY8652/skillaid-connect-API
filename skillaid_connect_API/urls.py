@@ -22,7 +22,7 @@ from rest_framework import permissions
 
 schema_view = get_schema_view(
     openapi.Info(
-        title = 'Movie Review API',
+        title = 'skillaid-connect-API',
         default_version = 'v1.0.0',
         description = 'The skillaid connect api allows users to learn from a variety of courses including tech, programming, graphic design just to list a few and one can select the amount of difficulty one is able to handle from the api',
         terms_of_service = 'https://google.com/policies/terms',
@@ -41,4 +41,5 @@ urlpatterns = [
     path('api/course/', include('course.urls'), name='courses'),
     path('api/lessons/', include('lesson.urls'), name='lessons'),
     path('api/users/', include('users.urls'), name='users'),
+    path('api/reviews/', include('reviews.urls'), name='reviews'),
 ]

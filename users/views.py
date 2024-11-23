@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import get_user_model, authenticate
 from .serializers import UserSerializer, UserLoginSerializer, UserLogoutSerializer
-from rest_framework import generics, status, permissions, serializers
+from rest_framework import generics, status, permissions
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.hashers import make_password
@@ -38,7 +38,7 @@ class UserListCreateView(generics.ListCreateAPIView):
 class UserDetailView(generics.GenericAPIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, permissions.IsAdminUser]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 class UserLoginView(generics.GenericAPIView):
     serializer_class = UserLoginSerializer
